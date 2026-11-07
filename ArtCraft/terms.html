@@ -1,0 +1,401 @@
+<html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms &amp; Conditions | NSBM ArtCraft</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      color: #092b45;
+      background: #f7fafb;
+    }
+
+    a { text-decoration: none; }
+
+    header {
+      position: relative;
+      z-index: 2;
+      background: #062f48;
+      color: #fff;
+    }
+
+    .navbar {
+      max-width: 1200px;
+      min-height: 64px;
+      margin: auto;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .brand {
+      margin-right: auto;
+      color: #fff;
+      font-size: 25px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      margin-left: 12px;
+      color: #53e12e;
+      font-size: 21px;
+    }
+
+    nav, .account {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    nav a, .account a {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a:hover, .login:hover { color: #62e649; }
+    .search { display: flex; }
+
+    .register {
+      padding: 11px 17px;
+      border-radius: 8px;
+      background: #43d52f;
+    }
+
+    main {
+      position: relative;
+      min-height: calc(100vh - 64px);
+      overflow: hidden;
+      background: radial-gradient(ellipse at center, #fff 0%, #f8fafb 65%, #eaf5f3 100%);
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: auto;
+      padding: 25px 5% 100px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .breadcrumb a {
+      display: flex;
+      color: #092b45;
+    }
+
+    .heading {
+      position: relative;
+      margin-top: 38px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.15;
+      letter-spacing: -1px;
+      font-weight: 800;
+    }
+
+    h1 span { color: #13a630; }
+
+    .subtitle {
+      margin: 0;
+      color: #10243b;
+      font-size: 17px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 700px;
+      margin-top: 24px;
+      padding: 22px 24px;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 5px 22px rgba(19, 64, 85, 0.1);
+    }
+
+    .term { margin-bottom: 18px; }
+
+    .term h2 {
+      margin: 0 0 7px;
+      font-size: 15px;
+      line-height: 1.3;
+      font-weight: 800;
+    }
+
+    .term p {
+      margin: 0;
+      color: #10243b;
+      font-size: 13px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .agreement {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 25px;
+      color: #10243b;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .agreement input {
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      accent-color: #10a52e;
+      cursor: pointer;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 10px;
+    }
+
+    .continue {
+      min-width: 120px;
+      padding: 12px 22px;
+      border: 0;
+      border-radius: 8px;
+      color: #fff;
+      background: #10a52e;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .continue:hover { background: #0b8e27; }
+    .continue:disabled { opacity: 0.55; cursor: not-allowed; }
+
+    .illustration {
+      position: absolute;
+      top: 80px;
+      right: 5%;
+      width: 180px;
+      height: 180px;
+      pointer-events: none;
+    }
+
+    .wave {
+      position: absolute;
+      right: -10%;
+      bottom: -65px;
+      left: -10%;
+      height: 105px;
+      border-radius: 50% 50% 0 0;
+      background: #a6d8e2;
+      opacity: 0.7;
+      transform: rotate(-3deg);
+    }
+
+    .wave.second {
+      bottom: -75px;
+      background: #bce5dd;
+      transform: rotate(4deg);
+    }
+
+    .leaves {
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    .top-left {
+      top: -35px;
+      left: -30px;
+      transform: rotate(180deg);
+      opacity: 0.5;
+    }
+
+    .top-right {
+      top: -35px;
+      right: -30px;
+      transform: rotate(180deg) scaleX(-1);
+      opacity: 0.4;
+    }
+
+    .bottom-left { bottom: -25px; left: -20px; }
+    .bottom-right { right: -20px; bottom: -25px; transform: scaleX(-1); }
+
+    @media (max-width: 700px) {
+      .navbar {
+        flex-wrap: wrap;
+        gap: 14px;
+        padding-top: 13px;
+        padding-bottom: 13px;
+      }
+
+      .brand { font-size: 20px; }
+      .brand span { font-size: 17px; }
+
+      nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .account { gap: 12px; }
+      main { min-height: calc(100vh - 105px); }
+      .heading { margin-top: 35px; }
+      .subtitle { font-size: 15px; }
+      .illustration { width: 120px; height: 120px; opacity: 0.6; }
+      .leaves { width: 130px; height: 130px; }
+    }
+
+    @media (max-width: 480px) {
+      .illustration { opacity: 0.2; right: 0; }
+      .card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <a class="brand" href="/">NSBM <span>ArtCraft</span></a>
+
+      <nav aria-label="Main navigation">
+        <a href="homepage.html">Home</a>
+        <a href="artgallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="account">
+        
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-4-4"></path>
+          </svg>
+        </a>
+        <a class="login" href="login.html">Login</a>
+        <a class="register" href="register.html">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <svg class="leaves top-left" viewBox="0 0 180 180" aria-hidden="true">
+      <path d="M0 180C35 126 68 82 120 38" fill="none" stroke="#75b86d" stroke-width="3"/>
+      <path d="M37 126C3 116 1 80 8 61c30 8 49 30 44 51Z" fill="#9ed48a"/>
+      <path d="M63 94C40 64 48 35 67 19c22 23 27 49 11 70Z" fill="#b1dd9d"/>
+      <path d="M78 89c13-31 42-42 69-38-5 27-25 47-57 48Z" fill="#a5d791"/>
+      <path d="M19 151c25-29 55-28 78-16-13 24-39 35-68 29Z" fill="#83c978"/>
+    </svg>
+
+    <svg class="leaves top-right" viewBox="0 0 180 180" aria-hidden="true">
+      <path d="M0 180C35 126 68 82 120 38" fill="none" stroke="#75b86d" stroke-width="3"/>
+      <path d="M37 126C3 116 1 80 8 61c30 8 49 30 44 51Z" fill="#9ed48a"/>
+      <path d="M63 94C40 64 48 35 67 19c22 23 27 49 11 70Z" fill="#b1dd9d"/>
+      <path d="M78 89c13-31 42-42 69-38-5 27-25 47-57 48Z" fill="#a5d791"/>
+      <path d="M19 151c25-29 55-28 78-16-13 24-39 35-68 29Z" fill="#83c978"/>
+    </svg>
+
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="homepage.html" aria-label="Home">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3 2 12h3v9h6v-6h2v6h6v-9h3L12 3Z"></path>
+          </svg>
+        </a>
+        <span>›</span>
+        <span>Terms &amp; Conditions</span>
+      </div>
+
+      <section class="heading">
+        <h1>Terms &amp; <span>Conditions</span></h1>
+        <p class="subtitle">Please read our terms and conditions carefully.</p>
+      </section>
+
+      <svg class="illustration" viewBox="0 0 180 180" aria-hidden="true">
+        <path d="M33 35 17 60l17-3-12 24 19-8-6 28 21-12 5 32 17-21 17 26 8-27 24 17-4-26 28 6-17-21 24-11-27-4 13-23-28 8-3-27-19 18-15-22-9 27-25-11 7 24Z" fill="#ccebf4" opacity=".7"/>
+        <path d="M52 27h91c8 0 12 7 12 15v4h-12v82c0 8-5 13-12 13H46c6 0 9-5 9-12V39c0-7-2-12-3-12Z" fill="#dceffc" stroke="#4aa9d8" stroke-width="3"/>
+        <path d="M143 27c-5 0-8 6-8 13v6h20v-4c0-8-4-15-12-15Z" fill="#8bcce8" stroke="#4aa9d8" stroke-width="3"/>
+        <path d="M55 128H38v3c0 6 3 10 8 10s9-5 9-13Z" fill="#9bd5eb" stroke="#4aa9d8" stroke-width="3"/>
+        <path d="M69 48h52M69 61h52M69 74h34M69 87h30M69 100h28M69 113h27" stroke="#4aa9d8" stroke-width="4" stroke-linecap="round"/>
+        <path d="M127 73c9 6 17 8 24 9v19c0 17-10 27-24 34-14-7-24-17-24-34V82c7-1 15-3 24-9Z" fill="#075278" stroke="#063c60" stroke-width="4"/>
+        <path d="M108 86c7-1 13-4 19-8 6 4 12 7 19 8v15c0 13-7 22-19 28-12-6-19-15-19-28V86Z" fill="#0c9b96"/>
+        <path d="m117 102 7 7 14-16" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+
+      <form class="card" action="terms.html" method="get">
+        <section class="term">
+          <h2>1. Introduction</h2>
+          <p>By using NSBM ArtCraft, you agree to these terms and conditions.</p>
+        </section>
+
+        <section class="term">
+          <h2>2. Use of Content</h2>
+          <p>You may view, share and use the content for personal and educational purposes only.</p>
+        </section>
+
+        <section class="term">
+          <h2>3. User Responsibilities</h2>
+          <p>You must not upload harmful, offensive or copyrighted material without permission.</p>
+        </section>
+
+        <section class="term">
+          <h2>4. Changes</h2>
+          <p>We may update these terms at any time without prior notice.</p>
+        </section>
+
+        <label class="agreement">
+          <input type="checkbox" name="agree" required>
+          <span>I agree to the Terms &amp; Conditions</span>
+        </label>
+
+        <div class="actions">
+          <button class="continue" type="submit">Continue</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="wave"></div>
+    <div class="wave second"></div>
+
+    <svg class="leaves bottom-left" viewBox="0 0 180 180" aria-hidden="true">
+      <path d="M0 180C35 126 68 82 120 38" fill="none" stroke="#5eaa5b" stroke-width="3"/>
+      <path d="M37 126C3 116 1 80 8 61c30 8 49 30 44 51Z" fill="#80c974"/>
+      <path d="M63 94C40 64 48 35 67 19c22 23 27 49 11 70Z" fill="#a1d989"/>
+      <path d="M78 89c13-31 42-42 69-38-5 27-25 47-57 48Z" fill="#83ca72"/>
+      <path d="M19 151c25-29 55-28 78-16-13 24-39 35-68 29Z" fill="#68ba60"/>
+    </svg>
+
+    <svg class="leaves bottom-right" viewBox="0 0 180 180" aria-hidden="true">
+      <path d="M0 180C35 126 68 82 120 38" fill="none" stroke="#5eaa5b" stroke-width="3"/>
+      <path d="M37 126C3 116 1 80 8 61c30 8 49 30 44 51Z" fill="#80c974"/>
+      <path d="M63 94C40 64 48 35 67 19c22 23 27 49 11 70Z" fill="#a1d989"/>
+      <path d="M78 89c13-31 42-42 69-38-5 27-25 47-57 48Z" fill="#83ca72"/>
+      <path d="M19 151c25-29 55-28 78-16-13 24-39 35-68 29Z" fill="#68ba60"/>
+    </svg>
+  </main>
+</body>
+</html>
