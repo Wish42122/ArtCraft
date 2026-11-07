@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 <html lang="en">
 <head>
   <link rel="stylesheet" href="style.css">
@@ -336,7 +336,7 @@
             <path d="M12 3 2 12h3v9h6v-6h2v6h6v-9h3L12 3Z"></path>
           </svg>
         </a>
-        <span>›</span>
+        <span>â€º</span>
         <span>Feedback</span>
       </div>
 
@@ -349,11 +349,11 @@
         <form class="card" action="feedback.html" method="post">
           <span class="field-label" id="rating-label">Your Rating</span>
           <div class="rating" role="radiogroup" aria-labelledby="rating-label">
-            <button class="star selected" type="button" role="radio" aria-label="1 star" aria-checked="false" data-value="1">★</button>
-            <button class="star selected" type="button" role="radio" aria-label="2 stars" aria-checked="false" data-value="2">★</button>
-            <button class="star selected" type="button" role="radio" aria-label="3 stars" aria-checked="false" data-value="3">★</button>
-            <button class="star selected" type="button" role="radio" aria-label="4 stars" aria-checked="true" data-value="4">★</button>
-            <button class="star" type="button" role="radio" aria-label="5 stars" aria-checked="false" data-value="5">☆</button>
+            <button class="star selected" type="button" role="radio" aria-label="1 star" aria-checked="false" data-value="1">â˜…</button>
+            <button class="star selected" type="button" role="radio" aria-label="2 stars" aria-checked="false" data-value="2">â˜…</button>
+            <button class="star selected" type="button" role="radio" aria-label="3 stars" aria-checked="false" data-value="3">â˜…</button>
+            <button class="star selected" type="button" role="radio" aria-label="4 stars" aria-checked="true" data-value="4">â˜…</button>
+            <button class="star" type="button" role="radio" aria-label="5 stars" aria-checked="false" data-value="5">â˜†</button>
           </div>
           <input type="hidden" name="rating" id="rating" value="4">
 
@@ -418,7 +418,7 @@
         stars.forEach((item) => {
           const selected = Number(item.dataset.value) <= value;
           item.classList.toggle("selected", selected);
-          item.textContent = selected ? "★" : "☆";
+          item.textContent = selected ? "â˜…" : "â˜†";
           item.setAttribute("aria-checked", item === star ? "true" : "false");
         });
       });
