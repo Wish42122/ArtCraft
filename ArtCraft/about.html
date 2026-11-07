@@ -1,0 +1,302 @@
+<html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script> 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunset Serenity — NSBM ArtCraft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+        background: #f7f9fb;
+        color: #333;
+        min-height: 100vh;
+    }
+
+    
+    header {
+        background: #061e36;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 13px 60px;
+        color: #fff;
+        position: relative;
+        z-index: 5;
+    }
+    .logo { font-size: 23px; font-weight: 800; display: flex; align-items: center; gap: 8px; letter-spacing: .4px; cursor: pointer; }
+    .logo .w { color: #fff; }
+    .logo .g { color: #25c364; }
+
+    nav { display: flex; align-items: center; gap: 26px; }
+    nav a { color: #dbe4ee; text-decoration: none; font-size: 14px; font-weight: 500; transition: color .2s; }
+    nav a:hover, nav a.active { color: #25c364; }
+
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .search-icon { color: #dbe4ee; font-size: 14px; cursor: pointer; }
+    .login-btn { color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; }
+    .register-btn {
+        background: #25c364; color: #fff; padding: 8px 18px; border-radius: 6px;
+        text-decoration: none; font-size: 14px; font-weight: 600; transition: background .2s;
+    }
+    .register-btn:hover { background: #1eb057; }
+
+    
+    main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 22px 24px 70px;
+    }
+
+    .back-link {
+        display: inline-flex; align-items: center; gap: 8px;
+        color: #475569; text-decoration: none; font-size: 13.5px; font-weight: 500;
+        margin-bottom: 18px; transition: color .2s;
+    }
+    .back-link:hover { color: #25c364; }
+
+   
+    .detail {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 34px;
+        align-items: start;
+    }
+
+    .artwork-image {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(15, 23, 42, .14);
+        aspect-ratio: 1 / 1;
+    }
+    .artwork-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .info-panel { padding-top: 4px; }
+    .info-head {
+        display: flex; justify-content: space-between; align-items: flex-start;
+        margin-bottom: 16px;
+    }
+    .info-head h1 { font-size: 26px; font-weight: 800; color: #0f172a; }
+    .fav-heart {
+        border: none; background: none; cursor: pointer;
+        font-size: 22px; color: #ef4444; transition: transform .2s;
+    }
+    .fav-heart:hover { transform: scale(1.15); }
+    .fav-heart.unliked { color: #cbd5e1; }
+
+    .artist-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .artist-row img {
+        width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+        border: 2px solid #25c364;
+    }
+    .artist-row .name { font-size: 14.5px; font-weight: 700; color: #0f172a; }
+    .artist-row .meta { font-size: 12.5px; color: #7c8aa0; margin-top: 2px; }
+
+    .stats-row { display: flex; gap: 22px; color: #64748b; font-size: 13.5px; margin-bottom: 14px; }
+    .stats-row i { margin-right: 7px; color: #94a3b8; }
+
+    .badge {
+        display: inline-block;
+        background: #dbeafe; color: #2563eb;
+        font-size: 12px; font-weight: 600;
+        padding: 5px 14px; border-radius: 20px;
+        margin-bottom: 20px;
+    }
+
+    .section-label { font-size: 14.5px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+    .description {
+        font-size: 13.5px; color: #55677d; line-height: 1.65;
+        margin-bottom: 22px; max-width: 460px;
+    }
+
+    .materials { display: flex; gap: 10px; margin-bottom: 22px; }
+    .materials span {
+        background: #eef2f7; color: #475569;
+        font-size: 12.5px; font-weight: 500;
+        padding: 6px 14px; border-radius: 7px;
+    }
+
+    .uploaded { font-size: 13px; color: #64748b; margin-bottom: 26px; }
+    .uploaded strong { color: #0f172a; font-weight: 700; display: block; margin-bottom: 4px; font-size: 14px; }
+
+    .like-btn {
+        float: right;
+        background: #25c364; color: #fff; border: none; cursor: pointer;
+        padding: 11px 26px; border-radius: 8px;
+        font-size: 14px; font-weight: 600; font-family: inherit;
+        transition: background .2s;
+    }
+    .like-btn:hover { background: #1eb057; }
+    .like-btn.liked { background: #ef4444; }
+    .like-btn i { margin-right: 8px; }
+
+    .clearfix { clear: both; }
+
+    
+    .more-section { margin-top: 46px; }
+    .more-section h2 { font-size: 18px; font-weight: 800; color: #0f172a; margin-bottom: 16px; }
+    .more-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .more-card {
+        position: relative; border-radius: 10px; overflow: hidden;
+        height: 130px; box-shadow: 0 3px 10px rgba(15, 23, 42, .1);
+        cursor: pointer;
+    }
+    .more-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s ease; }
+    .more-card:hover img { transform: scale(1.07); }
+    .more-card .mini-heart {
+        position: absolute; top: 8px; right: 8px;
+        width: 26px; height: 26px; border-radius: 50%; border: none;
+        background: rgba(255, 255, 255, .92); color: #64748b;
+        font-size: 11px; cursor: pointer;
+    }
+    .more-card .mini-heart.liked { color: #ef4444; }
+
+   
+    @media (max-width: 900px) {
+        .detail { grid-template-columns: 1fr; }
+        .more-grid { grid-template-columns: repeat(2, 1fr); }
+        header { padding: 13px 24px; }
+        nav { display: none; }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo"><span class="w">NSBM</span><span class="g">ArtCraft</span></div>
+    <nav>
+        <a href="homepage.html">Home</a>
+        <a href="artgallery.html" class="active">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-right">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <a href="login.html" class="login-btn">Login</a>
+        <a href="register.html" class="register-btn">Register</a>
+    </div>
+</header>
+
+<main>
+    <a href="artgallery.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Gallery</a>
+
+    <div class="detail">
+       
+        <div class="artwork-image">
+            <img src="c:\Users\USER\Downloads\WhatsApp Image 2026-11-05 at 12.51.01.jpeg" alt="Sunset Serenity artwork">
+        </div>
+
+       
+        <div class="info-panel">
+            <div class="info-head">
+                <h1>Sunset Serenity</h1>
+                <button class="fav-heart" id="favHeart"><i class="fa-solid fa-heart"></i></button>
+            </div>
+
+            <div class="artist-row">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Dinithi Perera">
+                <div>
+                    <div class="name">By: Dinithi Perera</div>
+                    <div class="meta">Graphic Design | Year 3</div>
+                </div>
+            </div>
+
+            <div class="stats-row">
+                <span><i class="fa-regular fa-eye"></i>124 views</span>
+                <span><i class="fa-regular fa-heart"></i><span id="likeCount">12</span> likes</span>
+            </div>
+
+            <span class="badge">Painting</span>
+
+            <div class="section-label">Description</div>
+            <p class="description">
+                A peaceful sunset captured with acrylic paints, inspired by the natural beauty of
+                the NSBM green campus. This artwork represents hope, new beginnings and the
+                calmness of nature.
+            </p>
+
+            <div class="section-label">Materials Used</div>
+            <div class="materials">
+                <span>Acrylic Paint</span>
+                <span>Canvas</span>
+            </div>
+
+            <div class="uploaded">
+                <strong>Uploaded On</strong>
+                2026-08-12
+            </div>
+
+            <button class="like-btn" id="likeBtn"><i class="fa-regular fa-heart"></i>Like</button>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+   
+    <div class="more-section">
+        <h2>More from this artist</h2>
+        <div class="more-grid">
+            <div class="more-card">
+                <img src="c:\Users\USER\Downloads\WhatsApp Image 2026-11-05 at 13.41.14.jpeg" alt="Mountain artwork">
+                <button class="mini-heart"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            <div class="more-card">
+                <img src="c:\Users\USER\Downloads\WhatsApp Image 2026-11-05 at 13.41.15 (2).jpeg" alt="Flower artwork">
+                <button class="mini-heart"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            <div class="more-card">
+                <img src="c:\Users\USER\Downloads\WhatsApp Image 2026-11-05 at 13.41.15 (1).jpeg" alt="Forest artwork">
+                <button class="mini-heart"><i class="fa-regular fa-heart"></i></button>
+            </div>
+            <div class="more-card">
+                <img src="c:\Users\USER\Downloads\WhatsApp Image 2026-11-05 at 13.41.15.jpeg" alt="Portrait artwork">
+                <button class="mini-heart liked"><i class="fa-solid fa-heart"></i></button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+   
+    const likeBtn = document.getElementById('likeBtn');
+    const likeCount = document.getElementById('likeCount');
+    const favHeart = document.getElementById('favHeart');
+    let likes = 12;
+    let liked = false;
+
+    likeBtn.addEventListener('click', () => {
+        liked = !liked;
+        likes += liked ? 1 : -1;
+        likeCount.textContent = likes;
+        likeBtn.classList.toggle('liked', liked);
+        likeBtn.innerHTML = liked
+            ? '<i class="fa-solid fa-heart"></i>Liked'
+            : '<i class="fa-regular fa-heart"></i>Like';
+    });
+
+    favHeart.addEventListener('click', () => {
+        favHeart.classList.toggle('unliked');
+        const icon = favHeart.querySelector('i');
+        icon.classList.toggle('fa-solid');
+        icon.classList.toggle('fa-regular');
+    });
+
+    
+    document.querySelectorAll('.mini-heart').forEach(h => {
+        h.addEventListener('click', (e) => {
+            e.stopPropagation();
+            h.classList.toggle('liked');
+            const icon = h.querySelector('i');
+            icon.classList.toggle('fa-regular');
+            icon.classList.toggle('fa-solid');
+        });
+    });
+</script>
+
+</body>
+</html>
