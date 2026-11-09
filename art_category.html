@@ -1,0 +1,341 @@
+<html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArtCraft | Categories</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      color: #09253b;
+      background: #edf5f1;
+    }
+
+    .page {
+      min-height: 100vh;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 0 100%, #c4e8a9 0, transparent 23%),
+        radial-gradient(ellipse at 100% 100%, #b9e5d9 0, transparent 28%),
+        #f8fbfa;
+    }
+
+    header {
+      background: #06304a;
+      color: white;
+    }
+
+    .nav {
+      max-width: 1200px;
+      min-height: 68px;
+      margin: auto;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-right: auto;
+      font-weight: 800;
+      font-size: 25px;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: #50e22f;
+      font-size: 21px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    nav a,
+    .login {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a:hover,
+    .login:hover {
+      color: #57df43;
+    }
+
+    .account {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .search {
+      color: white;
+      display: flex;
+    }
+
+    .register {
+      padding: 11px 17px;
+      border-radius: 8px;
+      background: #41d62d;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    main {
+      position: relative;
+      max-width: 1200px;
+      margin: auto;
+      padding: 30px 5% 60px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .breadcrumb a {
+      display: flex;
+      color: #07304a;
+    }
+
+    .hero {
+      min-height: 210px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(38px, 6vw, 60px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+    }
+
+    h1 span {
+      color: #15a52c;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: clamp(15px, 2vw, 20px);
+      font-weight: 500;
+    }
+
+    .hero-art {
+      width: min(36%, 320px);
+      height: 190px;
+      object-fit: cover;
+      border-radius: 45% 55% 42% 58%;
+      mask-image: radial-gradient(ellipse, black 48%, transparent 75%);
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      overflow: hidden;
+      border-radius: 12px;
+      background: white;
+      text-decoration: none;
+      color: #09253b;
+      box-shadow: 0 5px 16px rgba(10, 48, 55, 0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 22px rgba(10, 48, 55, 0.15);
+    }
+
+    .card img {
+      display: block;
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+    }
+
+    .card h2 {
+      margin: 0;
+      padding: 14px 8px;
+      text-align: center;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 700px) {
+      .nav {
+        flex-wrap: wrap;
+        gap: 14px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+      }
+
+      .brand {
+        font-size: 20px;
+      }
+
+      .brand span {
+        font-size: 17px;
+      }
+
+      nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .account {
+        gap: 12px;
+      }
+
+      .hero {
+        min-height: 180px;
+      }
+
+      .hero-art {
+        height: 150px;
+      }
+
+      .categories {
+        gap: 14px;
+      }
+
+      .card img {
+        height: 120px;
+      }
+
+      .card h2 {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .categories {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-art {
+        width: 34%;
+        height: 120px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .card img {
+        height: 130px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="nav">
+        <a class="brand" href="#" style="color: inherit; text-decoration: none;">
+          NSBM <span>ArtCraft</span>
+        </a>
+
+        <nav>
+          <a href="homepage.html">Home</a>
+          <a href="artgallery.html">Gallery</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="account">
+          
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="m20 20-4-4"></path>
+            </svg>
+          </a>
+          <a class="login" href="login.html">Login</a>
+          <a class="register" href="register.html">Register</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="breadcrumb">
+        <a href="homepage.html" aria-label="Home">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3 2 12h3v9h6v-6h2v6h6v-9h3L12 3z"></path>
+          </svg>
+        </a>
+        <span>›</span>
+        <span>Categories</span>
+      </div>
+
+      <section class="hero">
+        <div>
+          <h1>Art <span>Categories</span></h1>
+          <p>Explore art by your favorite category</p>
+        </div>
+        <img
+          class="hero-art"
+          src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=80"
+          alt="Colorful painting supplies"
+        />
+      </section>
+
+      <section class="categories" aria-label="Art categories">
+        <a class="card" href="#">
+          <img src="photos/photo (30).jpeg" alt="Colorful painting" />
+          <h2>Paintings</h2>
+        </a>
+
+        <a class="card" href="#">
+          <img src="photos/photo (31).jpeg" alt="Drawing materials" />
+          <h2>Drawings</h2>
+        </a>
+
+        <a class="card" href="#">
+          <img src="photos/photo (35).jpeg" alt="Colorful digital artwork" />
+          <h2>Digital Art</h2>
+        </a>
+
+        <a class="card" href="#">
+          <img src="photos/photo (38).jpeg" alt="Camera for photography" />
+          <h2>Photography</h2>
+        </a>
+
+        <a class="card" href="#">
+          <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=600&q=80" alt="Traditional artwork" />
+          <h2>Traditional Art</h2>
+        </a>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
