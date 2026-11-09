@@ -1,0 +1,428 @@
+<html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback | NSBM ArtCraft</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      color: #092b45;
+      background: #f7fafb;
+    }
+
+    a { text-decoration: none; }
+
+    header {
+      position: relative;
+      z-index: 2;
+      background: #062f48;
+      color: #fff;
+    }
+
+    .navbar {
+      max-width: 1200px;
+      min-height: 64px;
+      margin: auto;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .brand {
+      margin-right: auto;
+      color: #fff;
+      font-size: 25px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      margin-left: 12px;
+      color: #53e12e;
+      font-size: 21px;
+    }
+
+    nav,
+    .account {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    nav a,
+    .account a {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a:hover,
+    .login:hover { color: #62e649; }
+
+    .search { display: flex; }
+
+    .register {
+      padding: 11px 17px;
+      border-radius: 8px;
+      background: #43d52f;
+    }
+
+    main {
+      position: relative;
+      min-height: calc(100vh - 64px);
+      overflow: hidden;
+      background: radial-gradient(ellipse at center, #fff 0%, #f8fafb 65%, #eaf5f3 100%);
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: auto;
+      padding: 25px 5% 100px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .breadcrumb a {
+      display: flex;
+      color: #092b45;
+    }
+
+    .heading {
+      margin-top: 42px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.15;
+      letter-spacing: -1px;
+      font-weight: 800;
+    }
+
+    h1 span { color: #13a630; }
+
+    .subtitle {
+      margin: 0;
+      color: #10243b;
+      font-size: 17px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .layout {
+      display: flex;
+      align-items: flex-start;
+      gap: 30px;
+      margin-top: 28px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 440px;
+      padding: 25px;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 5px 22px rgba(19, 64, 85, 0.08);
+    }
+
+    .field-label {
+      display: block;
+      margin-bottom: 9px;
+      color: #10243b;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .rating {
+      display: flex;
+      gap: 8px;
+      margin: 0 0 22px;
+    }
+
+    .star {
+      padding: 0;
+      border: 0;
+      background: none;
+      color: #9cafbf;
+      font-size: 31px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .star.selected { color: #ffa500; }
+
+    textarea {
+      display: block;
+      width: 100%;
+      min-height: 105px;
+      resize: vertical;
+      padding: 12px;
+      border: 1px solid #cbdced;
+      border-radius: 7px;
+      outline: none;
+      color: #092b45;
+      font: inherit;
+      font-size: 14px;
+    }
+
+    textarea::placeholder { color: #425e76; }
+
+    textarea:focus {
+      border-color: #15aa31;
+      box-shadow: 0 0 0 3px #dcf6e2;
+    }
+
+    .submit {
+      width: 100%;
+      max-width: 280px;
+      height: 44px;
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 0;
+      border-radius: 8px;
+      color: #fff;
+      background: #10a52e;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .submit:hover { background: #0b8e27; }
+
+    .illustration {
+      width: min(38%, 320px);
+      margin-top: -60px;
+      flex-shrink: 0;
+    }
+
+    .wave {
+      position: absolute;
+      right: -10%;
+      bottom: -65px;
+      left: -10%;
+      height: 105px;
+      border-radius: 50% 50% 0 0;
+      background: #a6d8e2;
+      opacity: 0.7;
+      transform: rotate(-3deg);
+    }
+
+    .wave.second {
+      bottom: -75px;
+      background: #bce5dd;
+      transform: rotate(4deg);
+    }
+
+    .leaves {
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    .top-right {
+      top: -35px;
+      right: -30px;
+      transform: rotate(180deg) scaleX(-1);
+      opacity: 0.45;
+    }
+
+    .bottom-left {
+      bottom: -25px;
+      left: -20px;
+    }
+
+    .bottom-right {
+      right: -20px;
+      bottom: -25px;
+      transform: scaleX(-1);
+    }
+
+    @media (max-width: 700px) {
+      .navbar {
+        flex-wrap: wrap;
+        gap: 14px;
+        padding-top: 13px;
+        padding-bottom: 13px;
+      }
+
+      .brand { font-size: 20px; }
+      .brand span { font-size: 17px; }
+
+      nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .account { gap: 12px; }
+      main { min-height: calc(100vh - 105px); }
+      .heading { margin-top: 35px; }
+      .subtitle { font-size: 15px; }
+      .illustration { width: 30%; margin-top: -20px; }
+      .leaves { width: 130px; height: 130px; }
+    }
+
+    @media (max-width: 480px) {
+      .illustration { display: none; }
+      .card { padding: 20px; }
+      .submit { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <a class="brand" href="/">NSBM <span>ArtCraft</span></a>
+
+      <nav aria-label="Main navigation">
+        <a href="homepage.html">Home</a>
+        <a href="artgallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="account">
+        
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-4-4"></path>
+          </svg>
+        </a>
+        <a class="login" href="login.html">Login</a>
+        <a class="register" href="register.html">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <svg class="leaves top-right" viewBox="0 0 180 180" aria-hidden="true">
+      <path d="M0 180C35 126 68 82 120 38" fill="none" stroke="#75b86d" stroke-width="3"/>
+      <path d="M37 126C3 116 1 80 8 61c30 8 49 30 44 51Z" fill="#9ed48a"/>
+      <path d="M63 94C40 64 48 35 67 19c22 23 27 49 11 70Z" fill="#b1dd9d"/>
+      <path d="M78 89c13-31 42-42 69-38-5 27-25 47-57 48Z" fill="#a5d791"/>
+      <path d="M19 151c25-29 55-28 78-16-13 24-39 35-68 29Z" fill="#83c978"/>
+    </svg>
+
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="homepage.html" aria-label="Home">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 3 2 12h3v9h6v-6h2v6h6v-9h3L12 3Z"></path>
+          </svg>
+        </a>
+        <span>›</span>
+        <span>Feedback</span>
+      </div>
+
+      <section class="heading">
+        <h1>We Value <span>Your Feedback</span></h1>
+        <p class="subtitle">Share your thoughts and help us improve</p>
+      </section>
+
+      <div class="layout">
+        <form class="card" action="feedback.html" method="post">
+          <span class="field-label" id="rating-label">Your Rating</span>
+          <div class="rating" role="radiogroup" aria-labelledby="rating-label">
+            <button class="star selected" type="button" role="radio" aria-label="1 star" aria-checked="false" data-value="1">★</button>
+            <button class="star selected" type="button" role="radio" aria-label="2 stars" aria-checked="false" data-value="2">★</button>
+            <button class="star selected" type="button" role="radio" aria-label="3 stars" aria-checked="false" data-value="3">★</button>
+            <button class="star selected" type="button" role="radio" aria-label="4 stars" aria-checked="true" data-value="4">★</button>
+            <button class="star" type="button" role="radio" aria-label="5 stars" aria-checked="false" data-value="5">☆</button>
+          </div>
+          <input type="hidden" name="rating" id="rating" value="4">
+
+          <label class="field-label" for="feedback">Your Feedback</label>
+          <textarea id="feedback" name="feedback" placeholder="Write your feedback here..." required></textarea>
+
+          <button class="submit" type="submit">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M2 12 22 3l-5 18-5-6-4 3v-5l10-7-12 6H2Z"></path>
+            </svg>
+            Submit Feedback
+          </button>
+        </form>
+
+        <svg class="illustration" viewBox="0 0 300 340" aria-hidden="true">
+          <path d="M55 213 22 257l43-17-21 38 46-23-10 43 49-34 12 48 29-45 29 38 6-47 42 24-18-44 47 8-31-33 38-17-47-10 24-40-44 14 1-48-33 32-20-42-14 45-38-28 5 47-45-10 28 36-42 20 47 8Z" fill="#e75578" opacity=".55"/>
+          <path d="m26 191 45-25-21-32 42 9-4-39 32 24 16-42 16 42 34-24-5 39 42-10-23 33 43 22-46 7 25 35-44-13-4 43-30-29-23 38-11-41-39 19 13-39Z" fill="#139ed2" opacity=".65"/>
+          <path d="m92 244-38 57 54-33-15 51 46-40 14 52 21-51 44 30-14-48 51 9-34-34 36-19-49-3-9-38-24 28-35-25 4 39Z" fill="#f46b32" opacity=".7"/>
+          <g fill="none" stroke="#ffa500" stroke-width="5" stroke-linecap="round">
+            <path d="M150 24V8M98 38 88 24M202 38l10-14M73 75 56 70M226 75l17-5M68 119H51M232 119h17"/>
+          </g>
+          <path d="M150 49c-42 0-73 31-73 72 0 27 13 42 27 58 10 11 14 23 15 35h62c1-12 5-24 15-35 14-16 27-31 27-58 0-41-31-72-73-72Z" fill="#ffbd22" stroke="#f79b00" stroke-width="5"/>
+          <path d="M150 57c-36 0-64 28-64 64 0 23 10 36 24 51 11 13 16 25 17 35h46c1-10 6-22 17-35 14-15 24-28 24-51 0-36-28-64-64-64Z" fill="#ffd84d"/>
+          <path d="M122 108c-9-14-17-4-8 6 4 5 10 5 16 5h40c6 0 12 0 16-5 9-10 1-20-8-6-6 10-8 28-10 65l-2 33m-32-98c3 16 5 39 6 65l2 33" fill="none" stroke="#d77b00" stroke-width="5" stroke-linecap="round"/>
+          <path d="M118 211h64v17h-64z" fill="#176b91"/>
+          <path d="M121 229h58v13h-58z" fill="#0b526f"/>
+          <path d="M128 243h44c-2 12-10 18-22 18s-20-6-22-18Z" fill="#083f5c"/>
+          <path d="M103 93c5-12 13-19 23-23" fill="none" stroke="#fff4bd" stroke-width="10" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="wave"></div>
+    <div class="wave second"></div>
+
+    <svg class="leaves bottom-left" viewBox="0 0 180 180" aria-hidden="true">
+      <path d="M0 180C35 126 68 82 120 38" fill="none" stroke="#5eaa5b" stroke-width="3"/>
+      <path d="M37 126C3 116 1 80 8 61c30 8 49 30 44 51Z" fill="#80c974"/>
+      <path d="M63 94C40 64 48 35 67 19c22 23 27 49 11 70Z" fill="#a1d989"/>
+      <path d="M78 89c13-31 42-42 69-38-5 27-25 47-57 48Z" fill="#83ca72"/>
+      <path d="M19 151c25-29 55-28 78-16-13 24-39 35-68 29Z" fill="#68ba60"/>
+    </svg>
+
+    <svg class="leaves bottom-right" viewBox="0 0 180 180" aria-hidden="true">
+      <path d="M0 180C35 126 68 82 120 38" fill="none" stroke="#5eaa5b" stroke-width="3"/>
+      <path d="M37 126C3 116 1 80 8 61c30 8 49 30 44 51Z" fill="#80c974"/>
+      <path d="M63 94C40 64 48 35 67 19c22 23 27 49 11 70Z" fill="#a1d989"/>
+      <path d="M78 89c13-31 42-42 69-38-5 27-25 47-57 48Z" fill="#83ca72"/>
+      <path d="M19 151c25-29 55-28 78-16-13 24-39 35-68 29Z" fill="#68ba60"/>
+    </svg>
+  </main>
+
+  <script>
+    const stars = document.querySelectorAll(".star");
+    const rating = document.getElementById("rating");
+
+    stars.forEach((star) => {
+      star.addEventListener("click", () => {
+        const value = Number(star.dataset.value);
+        rating.value = value;
+
+        stars.forEach((item) => {
+          const selected = Number(item.dataset.value) <= value;
+          item.classList.toggle("selected", selected);
+          item.textContent = selected ? "★" : "☆";
+          item.setAttribute("aria-checked", item === star ? "true" : "false");
+        });
+      });
+    });
+  </script>
+</body>
+</html>
