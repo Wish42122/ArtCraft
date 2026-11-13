@@ -1,0 +1,59 @@
+NSBM ArtCraft local setup
+
+1. Extract the ArtCraft folder into C:\xampp\htdocs.
+   The entry point should be C:\xampp\htdocs\ArtCraft\index.php.
+   Include the .htaccess file when copying the folder.
+
+2. Start Apache and MySQL in the XAMPP Control Panel.
+
+3. Open http://localhost/phpmyadmin/ and import database.sql.
+   It creates the artcraft database, tables and starter categories.
+   If you already imported the database from the earlier Member 4 version,
+   import migration.sql to add support for the Remember me checkbox.
+
+4. Open http://localhost/ArtCraft/ in a browser.
+   Register an account and wait for the Account created message.
+
+5. To give that registered account administrator access, open PowerShell and run
+   the commands below. Replace your-registered-email@example.com with the
+   exact email you used on the registration form.
+
+   Set-Location 'C:\xampp\htdocs\ArtCraft'
+   & 'C:\xampp\php\php.exe' .\create-admin.php --promote your-registered-email@example.com
+
+6. Sign out and sign in again. An administrator opens the Admin Dashboard.
+   Register a separate student account to test submissions and access restrictions.
+
+The default database connection uses 127.0.0.1, port 3306, database artcraft,
+user root and an empty password. To use different settings, copy
+config.example.php to config.local.php and edit the values.
+
+Use PHP 8.1 or newer with PDO MySQL, mbstring, fileinfo and sessions enabled.
+MySQL 8 or MariaDB 10.4 or newer is supported.
+
+For images up to 5 MB, set upload_max_filesize to 5M and post_max_size to 8M
+in XAMPP's php.ini, then restart Apache. The database max_allowed_packet must
+also allow the image size, for example 8 MB or more.
+
+The original HTML, style.css, script.js and photos are included as supplied.
+Apache uses .htaccess to serve the PHP versions through the existing HTML links.
+If a login form does nothing or an admin page shows the original sample rows,
+check that .htaccess was copied and Apache allows rewriting in this directory.
+
+The admin can manage students, categories and exhibitions, review and moderate
+artwork submissions, feature approved artwork, and download reports.
+Students can submit and edit their artwork and register for exhibitions.
+Editing a submitted artwork sends it back to Pending and removes its featured flag.
+
+Existing gallery sample cards are retained. Approved database submissions are
+added using the same card layouts, and administrative moderation applies to
+database submissions. The original category style filters continue to work.
+New submissions have a category but no style tag.
+
+Email password recovery and the existing contact, feedback and social demos
+remain at their supplied implementation. Administrators can set replacement
+student passwords through Manage Users.
+
+For deployment use HTTPS and a database account with access limited to this
+application. Import the schema using an account permitted to create its tables.
+

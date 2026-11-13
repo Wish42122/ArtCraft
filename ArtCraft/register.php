@@ -1,0 +1,295 @@
+<?php require __DIR__.'/register-action.php'; ?>
+<html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Your Account — NSBM ArtCraft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+        background: #eef4f0;
+        color: #333;
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+    }
+
+    
+    .decor-img {
+        position: fixed;
+        z-index: 0;
+        object-fit: cover;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, .15);
+        opacity: .95;
+        pointer-events: none;
+    }
+    .decor-left  { left: -30px;  top: 200px;  width: 150px; height: 200px; transform: rotate(-6deg); }
+    .decor-left2 { left: 10px;   bottom: 40px; width: 130px; height: 150px; transform: rotate(5deg); }
+    .decor-right { right: -25px; top: 130px;  width: 140px; height: 210px; transform: rotate(6deg); }
+    .decor-right2{ right: 15px;  bottom: 60px; width: 120px; height: 140px; transform: rotate(-5deg); }
+    @media (max-width: 1100px) { .decor-img { display: none; } }
+
+   
+    header {
+        background: #061e36;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 13px 60px;
+        color: #fff;
+        position: relative;
+        z-index: 5;
+    }
+    .logo { font-size: 23px; font-weight: 800; display: flex; align-items: center; gap: 8px; letter-spacing: .4px; cursor: pointer; }
+    .logo .w { color: #fff; }
+    .logo .g { color: #25c364; }
+
+    nav { display: flex; align-items: center; gap: 26px; }
+    nav a { color: #dbe4ee; text-decoration: none; font-size: 14px; font-weight: 500; transition: color .2s; }
+    nav a:hover { color: #25c364; }
+
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .search-icon { color: #dbe4ee; font-size: 14px; cursor: pointer; }
+    .login-btn { color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; }
+    .register-btn {
+        background: #25c364; color: #fff; padding: 8px 18px; border-radius: 6px;
+        text-decoration: none; font-size: 14px; font-weight: 600; transition: background .2s;
+    }
+    .register-btn:hover { background: #1eb057; }
+
+    
+    .wrap {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        padding: 46px 20px 70px;
+    }
+    .card {
+        background: #fff;
+        width: 100%;
+        max-width: 460px;
+        border-radius: 14px;
+        box-shadow: 0 12px 40px rgba(15, 23, 42, .10);
+        padding: 38px 44px 30px;
+        height: fit-content;
+    }
+
+    .brand { display: flex; flex-direction: column; align-items: center; margin-bottom: 20px; }
+    .brand svg { width: 52px; height: 52px; margin-bottom: 6px; }
+    .brand .brand-text { font-size: 21px; font-weight: 800; line-height: 1.15; text-align: center; }
+    .brand .brand-text .w { color: #0b2545; }
+    .brand .brand-text .g { color: #25c364; }
+
+    .card h1 { text-align: center; font-size: 24px; font-weight: 800; color: #0f172a; }
+    .card .subtitle { text-align: center; font-size: 13px; color: #7c8aa0; margin: 8px 0 26px; }
+
+    
+    .field { margin-bottom: 17px; }
+    .field label {
+        display: block;
+        font-size: 13px;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 7px;
+    }
+    .input-wrap { position: relative; }
+    .input-wrap input {
+        width: 100%;
+        padding: 12px 42px 12px 14px;
+        border: 1px solid #dde4ec;
+        border-radius: 8px;
+        font-size: 13.5px;
+        font-family: inherit;
+        color: #334155;
+        background: #fbfcfe;
+        outline: none;
+        transition: border .2s, box-shadow .2s;
+    }
+    .input-wrap input::placeholder { color: #a5b1c2; }
+    .input-wrap input:focus {
+        border-color: #25c364;
+        box-shadow: 0 0 0 3px rgba(37, 195, 100, .15);
+        background: #fff;
+    }
+    .input-wrap.no-icon input { padding-right: 14px; }
+    .eye {
+        position: absolute;
+        right: 13px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #94a3b8;
+        font-size: 14px;
+        cursor: pointer;
+        background: none;
+        border: none;
+    }
+    .eye:hover { color: #475569; }
+
+    .agree {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 13px;
+        color: #475569;
+        margin: 4px 0 20px;
+        cursor: pointer;
+        user-select: none;
+    }
+    .agree input { width: 16px; height: 16px; accent-color: #25c364; cursor: pointer; }
+    .agree a { color: #2563eb; text-decoration: none; font-weight: 600; }
+    .agree a:hover { text-decoration: underline; }
+
+    .btn-register {
+        width: 100%;
+        background: #25c364;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 14px;
+        font-size: 15px;
+        font-weight: 700;
+        font-family: inherit;
+        cursor: pointer;
+        transition: background .2s, transform .1s;
+    }
+    .btn-register:hover { background: #1eb057; }
+    .btn-register:active { transform: scale(.99); }
+
+    .login-line {
+        text-align: center;
+        font-size: 13px;
+        color: #64748b;
+        margin-top: 20px;
+    }
+    .login-line a { color: #25c364; font-weight: 700; text-decoration: none; }
+    .login-line a:hover { text-decoration: underline; }
+
+    @media (max-width: 760px) {
+        header { padding: 13px 20px; }
+        nav { display: none; }
+        .card { padding: 30px 24px 24px; }
+    }
+</style>
+<link rel="stylesheet" href="backend.css">
+</head>
+<body>
+
+
+<img class="decor-img decor-left"  src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=300&q=70" alt="">
+<img class="decor-img decor-left2" src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=300&q=70" alt="">
+<img class="decor-img decor-right" src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b?auto=format&fit=crop&w=300&q=70" alt="">
+<img class="decor-img decor-right2" src="https://images.unsplash.com/photo-1502691876148-a84978e59af8?auto=format&fit=crop&w=300&q=70" alt="">
+
+
+<header>
+    <div class="logo"><span class="w">NSBM</span><span class="g">ArtCraft</span></div>
+    <nav>
+        <a href="homepage.html">Home</a>
+        <a href="artgallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-right">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <a href="login.html" class="login-btn">Login</a>
+        <a href="register.html" class="register-btn">Register</a>
+    </div>
+</header>
+
+
+<div class="wrap">
+    <div class="card">
+        <div class="brand">
+           
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+               
+            </svg>
+            <div class="brand-text">
+                <span class="w">NSBM</span><br>
+                <span class="g">ArtCraft</span>
+            </div>
+        </div>
+
+        <h1>Create Your Account</h1>
+        <p class="subtitle">Join NSBM ArtCraft and showcase your creativity</p>
+
+        <?php notice($error); ?>
+<form method="post" action="register.php">
+<?=token()?>
+            <div class="field">
+                <label for="fullname">Full Name</label>
+                <div class="input-wrap no-icon">
+                    <input type="text" id="fullname" name="fullname" required maxlength="120" autocomplete="name" value="<?=e(val('fullname'))?>" placeholder="Enter your full name">
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="studentid">Student ID</label>
+                <div class="input-wrap no-icon">
+                    <input type="text" id="studentid" name="studentid" required maxlength="32" value="<?=e(val('studentid'))?>" placeholder="Enter your NSBM student ID">
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="email">Email Address</label>
+                <div class="input-wrap no-icon">
+                    <input type="email" id="email" name="email" required maxlength="254" autocomplete="username" value="<?=e(val('email'))?>" placeholder="youremail@student.nsbm.ac.lk">
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="password">Password</label>
+                <div class="input-wrap">
+                    <input type="password" id="password" name="password" required maxlength="72" autocomplete="new-password" minlength="8" placeholder="Create a password">
+                    <button type="button" class="eye" aria-label="Toggle password visibility" data-target="password"><i class="fa-regular fa-eye"></i></button>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="confirm">Confirm Password</label>
+                <div class="input-wrap">
+                    <input type="password" id="confirm" name="confirm" required minlength="8" maxlength="72" autocomplete="new-password" placeholder="Confirm your password">
+                    <button type="button" class="eye" aria-label="Toggle password visibility" data-target="confirm"><i class="fa-regular fa-eye"></i></button>
+                </div>
+            </div>
+
+            <label class="agree">
+                <input type="checkbox" id="terms" name="terms" value="yes" required <?=val('terms')==='yes'?'checked':''?>>
+                <span>I agree to the <a href="terms.html">Terms and Conditions</a></span>
+            </label>
+
+            <button type="submit" class="btn-register">Register</button>
+        </form>
+
+        <p class="login-line">Already have an account? <a href="login.html">Login here</a></p>
+    </div>
+</div>
+
+<script>
+   
+    document.querySelectorAll('.eye').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const input = document.getElementById(btn.dataset.target);
+            const icon = btn.querySelector('i');
+            const show = input.type === 'password';
+            input.type = show ? 'text' : 'password';
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
+            icon.classList.toggle('fa-regular');
+            icon.classList.toggle('fa-solid');
+        });
+    });
+</script>
+
+</body>
+</html>
