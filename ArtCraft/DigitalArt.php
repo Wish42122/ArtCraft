@@ -1,0 +1,435 @@
+<?php
+require __DIR__.'/bootstrap.php';
+$categoryPage = true;
+$categoryName = 'Digital Art';
+$approved = sql(ART_QUERY." WHERE a.status='approved' AND c.name=?", [$categoryName])->fetchAll();
+?>
+<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NSBM ArtCraft — Painting</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #123e5c;
+      background: #f5f9fa;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 6%;
+      background: #033c55;
+      color: white;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      margin-left: 18px;
+      color: #39d23b;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+    }
+     nav a,
+    .login {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a:hover,
+    .login:hover {
+      color: #57df43;
+    }
+
+    .account {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .search {
+      color: white;
+      display: flex;
+    }
+
+    .register {
+      padding: 11px 17px;
+      border-radius: 8px;
+      background: #41d62d;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+
+    main {
+      max-width: 1400px;
+      margin: auto;
+      padding: 24px 30px 50px;
+    }
+
+    h1 {
+      margin: 0;
+      text-align: center;
+      font-size: 42px;
+    }
+
+    .intro {
+      margin: 5px 0 20px;
+      text-align: center;
+      color: #536b84;
+    }
+
+    .search-row {
+      display: grid;
+      grid-template-columns: 1fr 190px 190px 130px;
+      gap: 14px;
+    }
+
+    input,
+    select,
+    .search-row button {
+      height: 52px;
+      padding: 0 16px;
+      border: 1px solid #d5e0e7;
+      border-radius: 10px;
+      background: white;
+      font-size: 16px;
+    }
+
+    .search-row button {
+      border: 0;
+      background: #31bd35;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .categories {
+      display: flex;
+      gap: 14px;
+      margin: 16px 0 20px;
+      overflow-x: auto;
+    }
+
+    .chip {
+      padding: 12px 22px;
+      border: 1px solid #d5e0e7;
+      border-radius: 10px;
+      background: white;
+      color: #123e5c;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .chip.active {
+      background: #056184;
+      color: white;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      overflow: hidden;
+      border: 1px solid #dce5e9;
+      border-radius: 9px;
+      background: white;
+      box-shadow: 0 2px 5px #00000010;
+    }
+
+    .card[hidden] {
+      display: none;
+    }
+
+    .image {
+      position: relative;
+      height: 215px;
+    }
+
+    .image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .heart {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      border: 0;
+      background: transparent;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .heart.active {
+      color: #ff5366;
+    }
+
+    .details {
+      padding: 12px 18px;
+    }
+
+    .details h2 {
+      margin: 0 0 6px;
+      font-size: 17px;
+    }
+
+    .details p {
+      margin: 0 0 10px;
+    }
+
+    .stats {
+      color: #536b84;
+      font-size: 14px;
+    }
+
+    @media (max-width: 850px) {
+      nav {
+        display: none;
+      }
+
+      .search-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 550px) {
+      main {
+        padding: 22px 16px;
+      }
+
+      .logo {
+        font-size: 22px;
+      }
+
+      .logo span {
+        margin-left: 8px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .gallery,
+      .search-row {
+        grid-template-columns: 1fr;
+      }
+
+      .image {
+        height: 210px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">NSBM <span>ArtCraft</span></div>
+    <nav>
+      <a href="homepage.html">Home</a>
+      <a href="artgallery.html">Gallery</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+     <div class="nav-actions">
+      <button class="nav-search" aria-label="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <?php session_nav('login','register'); ?>
+      </div>
+  </header>
+
+  <main>
+    <h1>Digital Art</h1>
+    <p class="intro">Discover beautiful digital artworks created by NSBM students.</p>
+
+    <form class="search-row" id="searchForm">
+      <input id="search" type="search" placeholder="Search digital artworks, artists or keywords...">
+
+      <select id="style">
+        <option value="all">All Styles</option>
+        <option value="realism">Realism</option>
+        <option value="abstract">Abstract</option>
+        <option value="watercolor">Watercolor</option>
+        <option value="oil">Oil Painting</option>
+        <option value="portrait">Portrait</option>
+        <option value="landscape">Landscape</option>
+      </select>
+
+      <select>
+        <option>Newest First</option>
+        <option>Most Popular</option>
+      </select>
+
+      <button type="submit">Search</button>
+    </form>
+
+    <div class="categories">
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="realism">Realism</button>
+      <button class="chip" data-filter="abstract">Abstract</button>
+      <button class="chip" data-filter="watercolor">Watercolor</button>
+      <button class="chip" data-filter="oil">Oil Painting</button>
+      <button class="chip" data-filter="portrait">Portrait</button>
+      <button class="chip" data-filter="landscape">Landscape</button>
+    </div>
+
+    <section class="gallery">
+<?php require __DIR__.'/public-artworks-view.php'; ?>
+
+      <article class="card" data-styles="landscape oil realism">
+        <div class="image">
+          <img src="photos/photo (11).jpeg" alt="Sunset landscape">
+          <button class="heart">♡</button>
+        </div>
+        <div class="details">
+          <h2>Sunset Bliss</h2>
+          <p>By Kavindu Perera</p>
+          <div class="stats">♥ 152 &nbsp; ◉ 2.1k</div>
+        </div>
+      </article>
+
+      <article class="card" data-styles="watercolor landscape">
+        <div class="image">
+          <img src="photos/photo (8).jpeg" alt="City street">
+          <button class="heart">♡</button>
+        </div>
+        <div class="details">
+          <h2>Rainy Day</h2>
+          <p>By Dinushi Fernando</p>
+          <div class="stats">♥ 118 &nbsp; ◉ 1.8k</div>
+        </div>
+      </article>
+
+      <article class="card" data-styles="realism oil">
+        <div class="image">
+          <img src="photos/photo (5).jpeg" alt="Sunflowers">
+          <button class="heart">♡</button>
+        </div>
+        <div class="details">
+          <h2>Sunflower Dreams</h2>
+          <p>By Tharindu Senanayake</p>
+          <div class="stats">♥ 134 &nbsp; ◉ 1.6k</div>
+        </div>
+      </article>
+
+      <article class="card" data-styles="portrait abstract oil">
+        <div class="image">
+          <img src="photos/photo (24).jpeg" alt="Portrait">
+          <button class="heart">♡</button>
+        </div>
+        <div class="details">
+          <h2>Inner Peace</h2>
+          <p>By Nethmi Wickramasinghe</p>
+          <div class="stats">♥ 121 &nbsp; ◉ 1.4k</div>
+        </div>
+      </article>
+
+      <article class="card" data-styles="landscape realism watercolor">
+        <div class="image">
+          <img src="photos/photo (29).jpeg" alt="Mountain landscape">
+          <button class="heart">♡</button>
+        </div>
+        <div class="details">
+          <h2>Mountain Serenity</h2>
+          <p>By Lahiru Perera</p>
+          <div class="stats">♥ 97 &nbsp; ◉ 1.2k</div>
+        </div>
+      </article>
+
+      <article class="card" data-styles="abstract oil">
+        <div class="image">
+          <img src="photos/photo (35).jpeg" alt="Abstract artwork">
+          <button class="heart">♡</button>
+        </div>
+        <div class="details">
+          <h2>Abstract Harmony</h2>
+          <p>By Shashini De Silva</p>
+          <div class="stats">♥ 110 &nbsp; ◉ 1.3k</div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const search = document.getElementById("search");
+    const style = document.getElementById("style");
+    const cards = document.querySelectorAll(".card");
+
+    function filterCards() {
+      const text = search.value.toLowerCase();
+      const selectedStyle = style.value;
+
+      cards.forEach(card => {
+        const matchesText = card.innerText.toLowerCase().includes(text);
+        const matchesStyle =
+          selectedStyle === "all" ||
+          card.dataset.styles.includes(selectedStyle);
+
+        card.hidden = !(matchesText && matchesStyle);
+      });
+    }
+
+    document.getElementById("searchForm").addEventListener("submit", event => {
+      event.preventDefault();
+      filterCards();
+    });
+
+    search.addEventListener("input", filterCards);
+    style.addEventListener("change", filterCards);
+
+    document.querySelectorAll(".chip").forEach(button => {
+      button.addEventListener("click", () => {
+        style.value = button.dataset.filter;
+
+        document.querySelectorAll(".chip").forEach(chip => {
+          chip.classList.remove("active");
+        });
+
+        button.classList.add("active");
+        filterCards();
+      });
+    });
+
+    document.querySelectorAll(".heart").forEach(button => {
+      button.addEventListener("click", () => {
+        button.classList.toggle("active");
+      });
+    });
+  </script>
+</body>
+</html>

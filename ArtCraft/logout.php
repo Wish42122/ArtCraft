@@ -1,0 +1,360 @@
+<?php require __DIR__.'/logout-action.php'; ?>
+<html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logged Out | NSBM ArtCraft</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      color: #092b45;
+      background: #f7fafb;
+    }
+
+    header {
+      position: relative;
+      z-index: 2;
+      background: #062f48;
+      color: #fff;
+    }
+
+    .navbar {
+      max-width: 1200px;
+      min-height: 64px;
+      margin: auto;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .brand {
+      margin-right: auto;
+      color: #fff;
+      font-size: 25px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      margin-left: 12px;
+      color: #53e12e;
+      font-size: 21px;
+    }
+
+    nav,
+    .account {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    nav a,
+    .account a {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a:hover,
+    .login:hover {
+      color: #62e649;
+    }
+
+    .search {
+      display: flex;
+    }
+
+    .register {
+      padding: 11px 17px;
+      border-radius: 8px;
+      background: #43d52f;
+    }
+
+    main {
+      position: relative;
+      min-height: calc(100vh - 64px);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 38%, #ffffff 0%, #f8fafb 55%, #eaf5f3 100%);
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      padding: 70px 20px 150px;
+    }
+
+    .logout-icon {
+      width: 170px;
+      height: 170px;
+      margin: 0 auto 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #e4f0fa, #cfe2f5);
+      color: #062f48;
+    }
+
+    .logout-icon svg {
+      width: 100px;
+      height: 100px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.2;
+      letter-spacing: -1px;
+      font-weight: 800;
+    }
+
+    h1 span {
+      color: #35bd31;
+    }
+
+    p {
+      margin: 0;
+      color: #10263d;
+      font-size: 19px;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .home-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 32px;
+      padding: 14px 22px;
+      border-radius: 10px;
+      background: #10a52e;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .home-button:hover {
+      background: #0b8d26;
+      transform: translateY(-2px);
+    }
+
+    .home-button svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .wave {
+      position: absolute;
+      right: -10%;
+      bottom: -50px;
+      left: -10%;
+      height: 105px;
+      border-radius: 50% 50% 0 0;
+      background: #add9d5;
+      opacity: 0.7;
+      transform: rotate(-3deg);
+    }
+
+    .wave.second {
+      bottom: -65px;
+      background: #8ec8d2;
+      transform: rotate(4deg);
+    }
+
+    .leaves {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    .leaves.top-left {
+      top: -25px;
+      left: -30px;
+      transform: rotate(180deg);
+    }
+
+    .leaves.top-right {
+      top: -35px;
+      right: -35px;
+      transform: rotate(180deg) scaleX(-1);
+      opacity: 0.25;
+    }
+
+    .leaves.bottom-left {
+      bottom: -20px;
+      left: -20px;
+    }
+
+    .leaves.bottom-right {
+      right: -20px;
+      bottom: -20px;
+      transform: scaleX(-1);
+    }
+
+    @media (max-width: 700px) {
+      .navbar {
+        flex-wrap: wrap;
+        gap: 14px;
+        padding-top: 13px;
+        padding-bottom: 13px;
+      }
+
+      .brand {
+        font-size: 20px;
+      }
+
+      .brand span {
+        font-size: 17px;
+      }
+
+      nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .account {
+        gap: 12px;
+      }
+
+      main {
+        min-height: calc(100vh - 105px);
+      }
+
+      .content {
+        padding-top: 60px;
+      }
+
+      .logout-icon {
+        width: 145px;
+        height: 145px;
+      }
+
+      .logout-icon svg {
+        width: 85px;
+        height: 85px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      .leaves {
+        width: 130px;
+        height: 130px;
+      }
+    }
+  </style>
+<link rel="stylesheet" href="backend.css">
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <a class="brand" href="/">NSBM <span>ArtCraft</span></a>
+
+      <nav aria-label="Main navigation">
+        <a href="homepage.html">Home</a>
+        <a href="artgallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="account">
+        
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-4-4"></path>
+          </svg>
+        </a>
+        <a class="login" href="login.html">Login</a>
+        <a class="register" href="register.html">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <svg class="leaves top-left" viewBox="0 0 180 180" aria-hidden="true">
+      <path d="M0 180C35 126 68 82 120 38" fill="none" stroke="#75b86d" stroke-width="3"/>
+      <path d="M37 126C3 116 1 80 8 61c30 8 49 30 44 51Z" fill="#9ed48a"/>
+      <path d="M63 94C40 64 48 35 67 19c22 23 27 49 11 70Z" fill="#b1dd9d"/>
+      <path d="M78 89c13-31 42-42 69-38-5 27-25 47-57 48Z" fill="#a5d791"/>
+      <path d="M19 151c25-29 55-28 78-16-13 24-39 35-68 29Z" fill="#83c978"/>
+    </svg>
+
+    <svg class="leaves top-right" viewBox="0 0 180 180" aria-hidden="true">
+      <path d="M0 180C35 126 68 82 120 38" fill="none" stroke="#75b86d" stroke-width="3"/>
+      <path d="M37 126C3 116 1 80 8 61c30 8 49 30 44 51Z" fill="#9ed48a"/>
+      <path d="M63 94C40 64 48 35 67 19c22 23 27 49 11 70Z" fill="#b1dd9d"/>
+      <path d="M78 89c13-31 42-42 69-38-5 27-25 47-57 48Z" fill="#a5d791"/>
+      <path d="M19 151c25-29 55-28 78-16-13 24-39 35-68 29Z" fill="#83c978"/>
+    </svg>
+
+    <div class="content">
+      <div class="logout-icon" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="currentColor">
+          <path d="M20 14a6 6 0 0 1 6-6h35a6 6 0 0 1 6 6v22h-7V19H40v67l20 6V68h7v18a6 6 0 0 1-6 6H26a6 6 0 0 1-6-6V14Z"></path>
+          <path d="M57 43h21V32l19 18-19 18V57H57V43Z"></path>
+          <circle cx="49" cy="83" r="3" fill="#d7e9f7"></circle>
+        </svg>
+      </div>
+
+      <?php if ($user): ?>
+<h1>Ready to <span>log out?</span></h1>
+<form method="post" action="logout.php"><?=token()?><button class="app-button">Log out</button></form>
+<?php else: ?><h1>You have been <span>logged out!</span></h1><?php endif; ?>
+      <p>Thank you for using NSBM ArtCraft.<br>Come back soon!</p>
+
+      <a class="home-button" href="homepage.html">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 3 2 12h3v9h6v-6h2v6h6v-9h3L12 3Z"></path>
+        </svg>
+        Go to Homepage
+      </a>
+    </div>
+
+    <div class="wave"></div>
+    <div class="wave second"></div>
+
+    <svg class="leaves bottom-left" viewBox="0 0 180 180" aria-hidden="true">
+      <path d="M0 180C35 126 68 82 120 38" fill="none" stroke="#5eaa5b" stroke-width="3"/>
+      <path d="M37 126C3 116 1 80 8 61c30 8 49 30 44 51Z" fill="#80c974"/>
+      <path d="M63 94C40 64 48 35 67 19c22 23 27 49 11 70Z" fill="#a1d989"/>
+      <path d="M78 89c13-31 42-42 69-38-5 27-25 47-57 48Z" fill="#83ca72"/>
+      <path d="M19 151c25-29 55-28 78-16-13 24-39 35-68 29Z" fill="#68ba60"/>
+    </svg>
+
+    <svg class="leaves bottom-right" viewBox="0 0 180 180" aria-hidden="true">
+      <path d="M0 180C35 126 68 82 120 38" fill="none" stroke="#5eaa5b" stroke-width="3"/>
+      <path d="M37 126C3 116 1 80 8 61c30 8 49 30 44 51Z" fill="#80c974"/>
+      <path d="M63 94C40 64 48 35 67 19c22 23 27 49 11 70Z" fill="#a1d989"/>
+      <path d="M78 89c13-31 42-42 69-38-5 27-25 47-57 48Z" fill="#83ca72"/>
+      <path d="M19 151c25-29 55-28 78-16-13 24-39 35-68 29Z" fill="#68ba60"/>
+    </svg>
+  </main>
+</body>
+</html>
