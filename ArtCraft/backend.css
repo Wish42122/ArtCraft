@@ -1,0 +1,60 @@
+.app-notice {
+    margin: 0 0 16px;
+    padding: 10px 12px;
+    border-radius: 7px;
+    color: #14532d;
+    background: #dcfce7;
+    font-size: 14px;
+}
+.app-error { color: #991b1b; background: #fee2e2; }
+.app-form { display: grid; gap: 14px; margin: 18px 0 24px; }
+.app-form label { display: grid; gap: 6px; font-size: 13px; font-weight: 600; }
+.app-form input:not([type=checkbox]), .app-form textarea, .app-form select {
+    width: 100%;
+    padding: 11px 13px;
+    border: 1px solid #dde4ec;
+    border-radius: 8px;
+    background: #fbfcfe;
+    font: inherit;
+    color: #334155;
+}
+.app-form input:focus-visible, .app-form select:focus-visible, .app-form textarea:focus-visible {
+    outline: 2px solid #25c364;
+    outline-offset: 2px;
+}
+.app-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 16px 0; }
+.app-button, .app-tools a {
+    display: inline-block;
+    border: 0;
+    border-radius: 7px;
+    padding: 8px 16px;
+    background: #25c364;
+    color: #fff;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+.app-button.danger { background: #ef4444; }
+.app-button:focus-visible, .app-tools a:focus-visible { outline: 2px solid #0a2540; outline-offset: 3px; }
+.app-inline { display: inline-block; margin: 3px 0; }
+.app-table { overflow-x: auto; margin-bottom: 16px; }
+.app-empty { padding: 16px 0; color: #64748b; font-size: 14px; }
+.app-figure { display: block; width: min(400px,100%); height: auto; margin: 12px 0; }
+.app-muted { color: #64748b; font-size: 13px; }
+.app-avatar { width: 38px; height: 38px; border-radius: 50%; background: #dcfce7; color: #15803d; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+.app-check { display: block; }
+@media (max-width: 1000px) {
+    .app-mobile-links { display: flex; }
+}
+@media (min-width: 1001px) {
+    .app-mobile-links { display: none; }
+}
+@media (max-width: 640px) {
+    .app-button, .app-tools a { min-height: 44px; align-content: center; }
+    .app-table { max-width: 100%; }
+}
+
+
+.app-inactive { display: inline-block; border-radius: 20px; padding: 5px 14px; background: #e2e8f0; color: #475569; font-size: 11.5px; font-weight: 700; }
