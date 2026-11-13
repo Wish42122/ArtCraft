@@ -1,0 +1,282 @@
+<?php require __DIR__.'/login-action.php'; ?>
+<html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — NSBM ArtCraft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+        background: #f4f7f6;
+        color: #333;
+        min-height: 100vh;
+    }
+
+    
+    header {
+        background: #061e36;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 13px 60px;
+        color: #fff;
+        position: relative;
+        z-index: 10;
+        height: 58px;
+    }
+    .logo { font-size: 23px; font-weight: 800; display: flex; align-items: center; gap: 8px; letter-spacing: .4px; cursor: pointer; }
+    .logo .w { color: #fff; }
+    .logo .g { color: #25c364; }
+
+    nav { display: flex; align-items: center; gap: 26px; }
+    nav a { color: #dbe4ee; text-decoration: none; font-size: 14px; font-weight: 500; transition: color .2s; }
+    nav a:hover { color: #25c364; }
+
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .search-icon { color: #dbe4ee; font-size: 14px; cursor: pointer; }
+    .login-btn { color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; }
+    .register-btn {
+        background: #25c364; color: #fff; padding: 8px 18px; border-radius: 6px;
+        text-decoration: none; font-size: 14px; font-weight: 600; transition: background .2s;
+    }
+    .register-btn:hover { background: #1eb057; }
+
+    
+    .rail {
+        position: fixed; top: 58px; right: 0; bottom: 0; width: 48px;
+        background: #0a2540; z-index: 9;
+        display: flex; flex-direction: column; align-items: center;
+        padding-top: 16px; gap: 14px;
+    }
+    .rail-icon {
+        width: 32px; height: 32px; border-radius: 8px;
+        display: flex; align-items: center; justify-content: center;
+        color: #54749a; font-size: 14px; cursor: pointer; transition: all .2s;
+    }
+    .rail-icon:hover { color: #fff; background: rgba(255,255,255,.08); }
+    .rail-icon.active { background: #25c364; color: #fff; }
+
+    .login-page {
+        position: relative;
+        min-height: calc(100vh - 58px);
+        padding-right: 48px;
+        overflow: hidden;
+    }
+
+    
+    .photo-panel {
+        position: absolute; left: 0; top: 0; bottom: 0; width: 46%;
+        background: #25c364;
+        border-top-right-radius: 40% 50%;
+        border-bottom-right-radius: 40% 50%;
+    }
+    .photo {
+        position: absolute; top: 0; left: 0; bottom: 0; right: 7px;
+        background: url('https://static.brandfinance.com/wp-content/uploads/2023/09/NSBM-A4-scaled.jpg?x67995') center/cover no-repeat;
+        border-top-right-radius: 40% 50%;
+        border-bottom-right-radius: 40% 50%;
+    }
+
+    
+    .card-wrap {
+        position: relative; z-index: 2;
+        min-height: calc(100vh - 58px);
+        margin-left: 36%;
+        display: flex; align-items: center; justify-content: center;
+        padding: 40px 24px;
+    }
+    .login-card {
+        background: #fff;
+        width: 100%; max-width: 410px;
+        border-radius: 14px;
+        box-shadow: 0 14px 44px rgba(15, 23, 42, .12);
+        padding: 34px 40px 26px;
+    }
+
+    .brand { display: flex; flex-direction: column; align-items: center; margin-bottom: 18px; }
+    .brand svg { width: 50px; height: 50px; margin-bottom: 5px; }
+    .brand-text { font-size: 20px; font-weight: 800; letter-spacing: .3px; }
+    .brand-text .w { color: #0b2545; }
+    .brand-text .g { color: #25c364; }
+
+    .login-card h1 { text-align: center; font-size: 25px; font-weight: 800; color: #0f172a; }
+    .subtitle { text-align: center; font-size: 13px; color: #7c8aa0; margin: 8px 0 24px; }
+
+    .field { margin-bottom: 16px; }
+    .field label {
+        display: block; font-size: 13px; font-weight: 700;
+        color: #0f172a; margin-bottom: 7px;
+    }
+    .input-wrap { position: relative; }
+    .input-wrap > i {
+        position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
+        color: #9aa8ba; font-size: 13px; pointer-events: none;
+    }
+    .input-wrap input {
+        width: 100%;
+        padding: 12px 40px 12px 38px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        background: #fbfcfe;
+        font-size: 13.5px; font-family: inherit; color: #334155;
+        outline: none; transition: border .2s, box-shadow .2s;
+    }
+    .input-wrap input::placeholder { color: #a5b1c2; }
+    .input-wrap input:focus {
+        border-color: #25c364; background: #fff;
+        box-shadow: 0 0 0 3px rgba(37, 195, 100, .15);
+    }
+    .eye {
+        position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+        background: none; border: none; cursor: pointer;
+        color: #94a3b8; font-size: 14px;
+    }
+    .eye:hover { color: #475569; }
+
+    .form-row {
+        display: flex; justify-content: space-between; align-items: center;
+        margin: 2px 0 20px;
+    }
+    .remember {
+        display: flex; align-items: center; gap: 8px;
+        font-size: 13px; color: #475569; cursor: pointer; user-select: none;
+    }
+    .remember input { width: 15px; height: 15px; accent-color: #25c364; cursor: pointer; }
+    .forgot { font-size: 13px; font-weight: 600; color: #25c364; text-decoration: none; }
+    .forgot:hover { text-decoration: underline; }
+
+    .btn-login {
+        width: 100%;
+        background: #25c364; color: #fff;
+        border: none; border-radius: 8px;
+        padding: 13px;
+        font-size: 15px; font-weight: 700; font-family: inherit;
+        cursor: pointer; transition: background .2s, transform .1s;
+    }
+    .btn-login:hover { background: #1eb057; }
+    .btn-login:active { transform: scale(.99); }
+
+    .register-line { text-align: center; font-size: 13px; color: #64748b; margin-top: 18px; }
+    .register-line a { color: #25c364; font-weight: 700; text-decoration: none; }
+    .register-line a:hover { text-decoration: underline; }
+
+    
+    @media (max-width: 980px) {
+        .photo-panel, .photo { display: none; }
+        .card-wrap { margin-left: 0; }
+        header { padding: 13px 24px; }
+    }
+    @media (max-width: 760px) {
+        nav { display: none; }
+        .rail { display: none; }
+        .login-page { padding-right: 0; }
+        .login-card { padding: 28px 24px 22px; }
+    }
+</style>
+<link rel="stylesheet" href="backend.css">
+</head>
+<body>
+
+
+<header>
+    <div class="logo"><span class="w">NSBM</span><span class="g">ArtCraft</span></div>
+    <nav>
+        <a href="homepage.html">Home</a>
+        <a href="artgallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-right">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <a href="login.html" class="login-btn">Login</a>
+        <a href="register.html" class="register-btn">Register</a>
+    </div>
+</header>
+
+
+<aside class="rail">
+    <span class="rail-icon active"><i class="fa-solid fa-table-columns"></i></span>
+    <span class="rail-icon"><i class="fa-regular fa-image"></i></span>
+    <span class="rail-icon"><i class="fa-regular fa-user"></i></span>
+    <span class="rail-icon"><i class="fa-regular fa-bell"></i></span>
+    <span class="rail-icon"><i class="fa-solid fa-gear"></i></span>
+    <span class="rail-icon"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+</aside>
+
+
+<main class="login-page">
+    <div class="photo-panel">
+        <div class="photo"></div>
+    </div>
+       
+    <div class="card-wrap">
+        <div class="login-card">
+            <div class="brand">
+                <svg viewBox="0 0 64 64" aria-hidden="true">
+                   
+                </svg>
+                <div class="brand-text"><span class="w">NSBM</span> <span class="g">ArtCraft</span></div>
+            </div>
+
+            <h1>Welcome Back</h1>
+            <p class="subtitle">Login to your account and continue your creative journey</p>
+
+            <?php notice($error); ?>
+<form method="post" action="login.php">
+<?=token()?>
+                <div class="field">
+                    <label for="email">Email / Student ID</label>
+                    <div class="input-wrap">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="text" id="email" name="email" required maxlength="254" autocomplete="username" value="<?=e(val('email'))?>" placeholder="Enter your email or student ID">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="password">Password</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="password" name="password" required maxlength="72" autocomplete="current-password" placeholder="Enter your password">
+                        <button type="button" class="eye" aria-label="Toggle password visibility" data-target="password"><i class="fa-regular fa-eye"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label class="remember"><input type="checkbox" name="remember" value="yes"> Remember me</label>
+                    <a href="password.html" class="forgot">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+
+            <p class="register-line">Don't have an account? <a href="register.html">Register here</a></p>
+        </div>
+    </div>
+</main>
+
+<script>
+    
+    document.querySelectorAll('.eye').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const input = document.getElementById(btn.dataset.target);
+            const icon = btn.querySelector('i');
+            const show = input.type === 'password';
+            input.type = show ? 'text' : 'password';
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
+            icon.classList.toggle('fa-regular');
+            icon.classList.toggle('fa-solid');
+        });
+    });
+</script>
+
+</body>
+</html>
