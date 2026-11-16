@@ -1,0 +1,15 @@
+# .htaccess - safe defaults for hosting NSBM ArtCraft on Apache
+# (If your host shows a "500 Internal Server Error" after uploading, delete this file and tell your host's support.)
+
+# Open index.php first, then the home page
+DirectoryIndex index.php homepage.html
+
+# Do not show a file list when someone opens a folder (e.g. /photos/)
+Options -Indexes
+
+# Do not let visitors download the database file or the notes
+<IfModule mod_authz_core.c>
+    <FilesMatch "\.(sql|md)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
